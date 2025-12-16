@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วัดมหาพุทธาราม (วัดพระโต) - ทัวร์เสมือนจริง 360°</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sarabun', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .card-header.history {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .card-header.services {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .card-header.merit {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .card-header.facilities {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+        }
+
+        .card-header.tour360 {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .card-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+            background: white;
+        }
+
+        .card.active .card-content {
+            max-height: 2000px;
+            padding: 25px;
+        }
+
+        .card-content h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .card-content p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .card-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card-content li {
+            color: #666;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .card-content li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4facfe;
+            font-weight: bold;
+        }
+
+        .tour-360-container {
+            background: #f5f5f5;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .tour-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .tour-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding: 20px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-header {
+                padding: 20px 15px;
+            }
+
+            .card-icon {
+                font-size: 2.5em;
+            }
+
+            .card-title {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛕 วัดมหาพุทธาราม (วัดพระโต)</h1>
+            <p>ทัวร์เสมือนจริง 360 องศา</p>
+        </header>
+
+        <div class="grid">
+            <!-- Card 1: ประวัติวัด -->
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-header history">
+                    <div class="card-icon">📜</div>
+                    <div class="card-title">ประวัติวัด</div>
+                </div>
+                <div class="card-content">
+                    <h3>ประวัติความเป็นมา</h3>
+                    <p>วัดมหาพุทธาราม หรือที่ชาวบ้านเรียกกันว่า "วัดพระโต" เป็นวัดโบราณที่มีประวัติยาวนานกว่า 200 ปี ตั้งอยู่ในพื้นที่จังหวัดศรีสะเกษ</p>
+                    
+                    <h3>ความสำคัญ</h3>
+                    <p>วัดแห่งนี้เป็นศูนย์รวมจิตใจของชาวบ้านในท้องถิ่น มีพระประธานขนาดใหญ่เป็นที่เคารพสักการะ และเป็นแหล่งเรียนรู้พระพุทธศาสนาที่สำคัญ</p>
+
+                    <h3>สถาปัตยกรรม</h3>
+                    <p>อุโบสถและวิหารมีสถาปัตยกรรมแบบอีสานผสมผสานกับล้านช้าง สะท้อนถึงความเชื่อและวัฒนธรรมท้องถิ่น</p>
+                </div>
+            </div>
+
+            <!-- Card 2: จุดบริการ -->
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-header services">
+                    <div class="card-icon">🏛️</div>
+                    <div class="card-title">จุดบริการ</div>
+                </div>
+                <div class="card-content">
+                    <h3>บริการภายในวัด</h3>
+                    <ul>
+                        <li>จุดรับบริจาคทรัพย์สมบัติ</li>
+                        <li>สำนักงานเจ้าอาวาส</li>
+                        <li>ศาลาการเปรียญ สำหรับพิธีทางศาสนา</li>
+                        <li>ห้องน้ำสะอาด</li>
+                        <li>จุดจอดรถ</li>
+                        <li>จุดบริการน้ำดื่ม</li>
+                        <li>ศูนย์ข้อมูลท่องเที่ยว</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 3: จุดทำบุญ -->
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-header merit">
+                    <div class="card-icon">🙏</div>
+                    <div class="card-title">จุดทำบุญ</div>
+                </div>
+                <div class="card-content">
+                    <h3>จุดสักการะและทำบุญ</h3>
+                    <ul>
+                        <li>พระประธานในอุโบสถ - จุดไหว้พระหลัก</li>
+                        <li>พระเจดีย์บรรจุพระบรมสารีริกธาตุ</li>
+                        <li>ศาลาถวายภัตตาหารเช้า (06:00-07:00 น.)</li>
+                        <li>จุดจุดเทียนถวายพระ</li>
+                        <li>ต้นโพธิ์ศักดิ์สิทธิ์ - จุดปล่อยปลา</li>
+                        <li>หอระฆัง - ตีระฆังเช้า-เย็น</li>
+                        <li>ศาลาปฏิบัติธรรม</li>
+                    </ul>
+                    <p style="margin-top: 15px; color: #e74c3c; font-weight: bold;">⏰ เวลาเปิดทำบุญ: 06:00 - 18:00 น. ทุกวัน</p>
+                </div>
+            </div>
+
+            <!-- Card 4: จุดอำนวยความสะดวก -->
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-header facilities">
+                    <div class="card-icon">♿</div>
+                    <div class="card-title">จุดอำนวยความสะดวก</div>
+                </div>
+                <div class="card-content">
+                    <h3>สิ่งอำนวยความสะดวก</h3>
+                    <ul>
+                        <li>ที่จอดรถกว้างขวาง รองรับรถยนต์ 100 คัน</li>
+                        <li>ทางลาดสำหรับรถเข็น</li>
+                        <li>ห้องน้ำสะอาด (ชาย/หญิง/ผู้พิการ)</li>
+                        <li>จุดพักผ่อนมีร้มเงา</li>
+                        <li>ร้านจำหน่ายของที่ระลึก</li>
+                        <li>ร้านอาหาร-เครื่องดื่ม</li>
+                        <li>Wi-Fi ฟรี (SSID: Wat_Mahabuddharamm)</li>
+                        <li>จุดปฐมพยาบาลเบื้องต้น</li>
+                        <li>ป้ายบอกทางภาษาไทย-อังกฤษ</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Card 5: ทัวร์เสมือนจริง 360° -->
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-header tour360">
+                    <div class="card-icon">🌐</div>
+                    <div class="card-title">ทัวร์เสมือนจริง 360°</div>
+                </div>
+                <div class="card-content">
+                    <h3>สำรวจวัดแบบ 360 องศา</h3>
+                    <p>เที่ยวชมวัดมหาพุทธารามผ่านมุมมองเสมือนจริง ไม่ว่าคุณจะอยู่ที่ไหนก็สามารถสัมผัสบรรยากาศภายในวัดได้</p>
+                    
+                    <div class="tour-360-container">
+                        <h3 style="color: #333; margin-bottom: 20px;">📍 จุดชม 360°</h3>
+                        <a href="#" class="tour-btn" onclick="startTour('ubosot'); return false;">🏛️ อุโบสถ</a>
+                        <a href="#" class="tour-btn" onclick="startTour('viharn'); return false;">⛩️ วิหาร</a>
+                        <a href="#" class="tour-btn" onclick="startTour('chedi'); return false;">🗼 เจดีย์</a>
+                        <a href="#" class="tour-btn" onclick="startTour('sala'); return false;">🏘️ ศาลาการเปรียญ</a>
+                        <a href="#" class="tour-btn" onclick="startTour('ground'); return false;">🌳 บริเวณวัด</a>
+                        <p style="margin-top: 20px; color: #666;">💡 คลิกที่ปุ่มด้านบนเพื่อเริ่มทัวร์</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2024 วัดมหาพุทธาราม (วัดพระโต) | จังหวัดศรีสะเกษ</p>
+            <p>📞 โทร: 045-123-456 | 📧 info@watmahabuddharamm.com</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleCard(card) {
+            // ปิด card อื่นๆ ที่เปิดอยู่
+            const allCards = document.querySelectorAll('.card');
+            allCards.forEach(c => {
+                if (c !== card && c.classList.contains('active')) {
+                    c.classList.remove('active');
+                }
+            });
+
+            // Toggle card ที่คลิก
+            card.classList.toggle('active');
+        }
+
+        function startTour(location) {
+            let locationName = '';
+            switch(location) {
+                case 'ubosot':
+                    locationName = 'อุโบสถ';
+                    break;
+                case 'viharn':
+                    locationName = 'วิหาร';
+                    break;
+                case 'chedi':
+                    locationName = 'เจดีย์';
+                    break;
+                case 'sala':
+                    locationName = 'ศาลาการเปรียญ';
+                    break;
+                case 'ground':
+                    locationName = 'บริเวณวัด';
+                    break;
+            }
+            
+            alert('🌐 เริ่มทัวร์ 360° ที่ ' + locationName + '\n\n💡 ในการพัฒนาจริง คุณสามารถใช้:\n- Pannellum (JavaScript 360° viewer)\n- Google Street View API\n- Marzipano\n- A-Frame VR\n\nเพื่อฝังภาพ 360° แบบ interactive');
+            
+            // ในการใช้งานจริง คุณจะเชื่อมต่อกับ 360° viewer library
+            // เช่น: window.location.href = '360-tour.html?location=' + location;
+        }
+
+        // เพิ่ม animation เมื่อ scroll
+        window.addEventListener('scroll', function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (cardTop < windowHeight - 50) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
